@@ -1,0 +1,201 @@
+/* ==========================================================================
+   Desktop (default)
+   ========================================================================== */
+
+.page {
+  padding: var(--spacing-1600) var(--spacing-600);
+}
+
+/* Card ------------------------------------------------------------------- */
+
+.recipe {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-500);
+  max-width: 46rem; /* 736px */
+  margin-inline: auto;
+  padding: var(--spacing-500);
+  background-color: var(--color-white);
+  border-radius: var(--radius-lg);
+}
+
+.recipe__image {
+  width: 100%;
+  border-radius: var(--radius-md);
+}
+
+.recipe__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-400);
+}
+
+.recipe__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.recipe__title {
+  color: var(--color-stone-900);
+  font-family: var(--font-serif);
+  font-size: var(--text-preset-1);
+  font-weight: 400;
+  line-height: 1;
+}
+
+/* Sections --------------------------------------------------------------- */
+
+.section {
+  --marker-color: var(--color-brown-800);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-300);
+}
+
+.section__title {
+  color: var(--color-brown-800);
+  font-family: var(--font-serif);
+  font-size: var(--text-preset-2);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.section--highlight {
+  --marker-color: var(--color-rose-800);
+
+  gap: var(--spacing-200);
+  padding: var(--spacing-300);
+  background-color: var(--color-rose-50);
+  border-radius: var(--radius-md);
+}
+
+.section--highlight .section__title {
+  color: var(--color-rose-800);
+  font-family: var(--font-sans);
+  font-size: var(--text-preset-3);
+  font-weight: 600;
+}
+
+/* Figma lines take up no height, so the 1px border is pulled back out of the flow */
+.divider {
+  border: 0;
+  border-top: 1px solid var(--color-stone-150);
+  margin-bottom: -1px;
+}
+
+/* Lists ------------------------------------------------------------------ */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-100);
+}
+
+.list li {
+  position: relative;
+  padding-left: var(--spacing-500);
+}
+
+.list--bullet li::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: var(--spacing-100);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--marker-color);
+  transform: translateY(-50%);
+}
+
+.list--numbered {
+  counter-reset: step;
+}
+
+.list--numbered li {
+  counter-increment: step;
+}
+
+.list--numbered li::before {
+  content: counter(step) '.';
+  position: absolute;
+  top: 0;
+  left: var(--spacing-100);
+  color: var(--marker-color);
+  font-weight: 600;
+}
+
+/* Nutrition table -------------------------------------------------------- */
+
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.nutrition-table tr + tr {
+  border-top: 1px solid var(--color-stone-150);
+}
+
+.nutrition-table th,
+.nutrition-table td {
+  width: 50%;
+  padding-block: var(--spacing-150);
+  text-align: left;
+}
+
+/* Keep the row rhythm at 12px + line + 12px by absorbing the 1px border */
+.nutrition-table tr + tr > * {
+  padding-top: calc(var(--spacing-150) - 1px);
+}
+
+.nutrition-table tr:first-child > * {
+  padding-top: 0;
+}
+
+.nutrition-table tr:last-child > * {
+  padding-bottom: 0;
+}
+
+.nutrition-table th {
+  padding-inline: var(--spacing-400) var(--spacing-100);
+  color: var(--color-stone-600);
+  font-weight: 400;
+}
+
+.nutrition-table td {
+  padding-inline: var(--spacing-100) var(--spacing-400);
+  color: var(--color-brown-800);
+  font-weight: 700;
+}
+
+/* ==========================================================================
+   Mobile
+   ========================================================================== */
+
+@media (max-width: 767px) {
+  .page {
+    padding: 0;
+  }
+
+  .recipe {
+    gap: 0;
+    max-width: none;
+    padding: 0;
+    border-radius: 0;
+  }
+
+  .recipe__image {
+    border-radius: 0;
+  }
+
+  .recipe__content {
+    padding: var(--spacing-500) var(--spacing-400);
+  }
+
+  .list--numbered li::before {
+    font-weight: 700;
+  }
+}
